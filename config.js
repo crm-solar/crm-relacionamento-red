@@ -1,5 +1,5 @@
-// Configuração do Supabase. Cole a chave "anon public" entre as aspas abaixo.
+// Configuração do Supabase (chave pública "publishable" — pode ficar visível).
 window.CRM_CONFIG = {
   url: "https://jxewswcxhvqjewwjgjew.supabase.co",
-  key: "COLE_AQUI_A_CHAVE_ANON"
+  key: "sb_publishable_r8BXGqcyDknfkJVs0y4baA_mvx1SErL"
 };
