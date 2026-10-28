@@ -174,15 +174,17 @@ button.kpi[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 0 
 .alt{margin:0;text-align:center;color:var(--muted);font-size:.92rem}
 .link{border:none;background:none;padding:0;font-weight:700;color:var(--fg);text-decoration:none}
 .link:hover{text-decoration:underline}
-.login-right{background:#7d1b22;color:#fbf3ea;border-radius:28px;padding:72px 72px 64px;display:flex;flex-direction:column;gap:14px}
-.login-right .logo{background:#fbf3ea;height:52px;margin-bottom:28px;align-self:flex-start}
-.login-right h2{font-size:2.1rem;font-weight:800;color:#fff}
+.login-right{position:relative;overflow:hidden;background:#5a1418 url(login-fundo.jpg) 33% top/cover no-repeat;color:#fbf3ea;border-radius:28px;padding:72px 64px 56px;display:flex;flex-direction:column;justify-content:flex-end;gap:14px;min-height:560px}
+.login-right::before{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(38,8,10,.94) 0%,rgba(58,12,16,.78) 38%,rgba(70,14,18,.25) 68%,rgba(0,0,0,0) 100%);pointer-events:none}
+.login-right>*{position:relative}
+.login-right .logo{display:none}
+.login-right h2{font-size:2.1rem;font-weight:800;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.35)}
 .login-right .lead{margin:0;font-size:1.05rem;line-height:1.6;max-width:640px;color:#f6e6e2}
-.vals{list-style:none;margin:auto 0 0;padding:0;display:flex;flex-direction:column;gap:22px}
+.vals{list-style:none;margin:18px 0 0;padding:0;display:flex;flex-direction:column;gap:22px}
 .vals li{display:grid;grid-template-columns:24px 1fr;column-gap:10px;row-gap:6px}
 .vals li::before{content:"✓";grid-row:span 2;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:800}
 .vals b{color:#fff}.vals span{grid-column:2;color:#f6e6e2;font-size:.93rem}
-@media (max-width:900px){.login{grid-template-columns:1fr}.login-right{order:-1;padding:28px;border-radius:20px}.login-right .logo{margin-bottom:6px;height:40px}.login-right h2{font-size:1.5rem}.vals{display:none}.login-left{padding:8px 4px}.login-form h1{font-size:1.6rem}.login-form-wrap{padding:16px 0}}
+@media (max-width:900px){.login{grid-template-columns:1fr}.login-right{order:-1;padding:120px 22px 22px;border-radius:20px;min-height:0}.login-right h2{font-size:1.5rem}.vals{display:none}.login-left{padding:8px 4px}.login-form h1{font-size:1.6rem}.login-form-wrap{padding:16px 0}}
 .userbox{display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--muted)}
 
 /* perfis / configurações */
