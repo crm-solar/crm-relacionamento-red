@@ -153,42 +153,134 @@ button.kpi[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 0 
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 
-.login{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px max(16px,env(safe-area-inset-left,0px))}
-.login-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:28px;width:min(420px,100%);display:flex;flex-direction:column;gap:14px;box-shadow:var(--shadow)}
-.login-card h1{font-size:1.4rem}
-.login-card .field,.section>.field{flex:none}
-.login-card input{border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:var(--bg);width:100%}
+.login{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:16px;background:var(--surface)}
+.login-left{display:flex;flex-direction:column;padding:12px 24px}
+.login-copy{font-size:.8rem;color:var(--muted)}
+.login-form-wrap{flex:1;display:flex;align-items:center;justify-content:center;padding:32px 0}
+.login-form{width:min(500px,100%);display:flex;flex-direction:column;gap:18px}
+.login-form h1{font-size:2rem;color:var(--fg);font-weight:700}
+.login-form .sub{margin:4px 0 0;color:var(--muted);font-size:1rem}
+.lf{display:flex;flex-direction:column;gap:6px}
+.lf label{font-weight:600;font-size:.9rem}
+.lf input{border:1px solid var(--line);border-radius:10px;padding:11px 12px;background:var(--surface);width:100%;font-size:.95rem}
+.lf input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 3px var(--accent-soft)}
+.pw{position:relative}.pw input{padding-right:44px}
+.eye{position:absolute;right:6px;top:50%;transform:translateY(-50%);border:none;background:none;color:var(--muted);padding:6px;display:flex}
+.chk{display:flex;align-items:center;gap:8px;font-size:.92rem;cursor:pointer}
+.chk input{width:16px;height:16px;accent-color:var(--accent)}
+.btn.big{justify-content:center;padding:12px 16px;font-size:1rem;border-radius:10px}
+.lmsg{margin:-6px 0 0;min-height:1.2em;font-size:.88rem;color:var(--muted)}
+.lmsg.err{color:var(--bad)}.lmsg.ok{color:var(--ok)}
+.alt{margin:0;text-align:center;color:var(--muted);font-size:.92rem}
+.link{border:none;background:none;padding:0;font-weight:700;color:var(--fg);text-decoration:none}
+.link:hover{text-decoration:underline}
+.login-right{background:#7d1b22;color:#fbf3ea;border-radius:28px;padding:72px 72px 64px;display:flex;flex-direction:column;gap:14px}
+.login-right .logo{background:#fbf3ea;height:52px;margin-bottom:28px;align-self:flex-start}
+.login-right h2{font-size:2.1rem;font-weight:800;color:#fff}
+.login-right .lead{margin:0;font-size:1.05rem;line-height:1.6;max-width:640px;color:#f6e6e2}
+.vals{list-style:none;margin:auto 0 0;padding:0;display:flex;flex-direction:column;gap:22px}
+.vals li{display:grid;grid-template-columns:24px 1fr;column-gap:10px;row-gap:6px}
+.vals li::before{content:"✓";grid-row:span 2;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:800}
+.vals b{color:#fff}.vals span{grid-column:2;color:#f6e6e2;font-size:.93rem}
+@media (max-width:900px){.login{grid-template-columns:1fr}.login-right{order:-1;padding:28px;border-radius:20px}.login-right .logo{margin-bottom:6px;height:40px}.login-right h2{font-size:1.5rem}.vals{display:none}.login-left{padding:8px 4px}.login-form h1{font-size:1.6rem}.login-form-wrap{padding:16px 0}}
 .userbox{display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--muted)}
+
+/* perfis / configurações */
+.perfil-badge{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;border-radius:999px;padding:2px 8px;background:var(--accent-soft);color:var(--accent)}
+.perfil-badge.admin{background:var(--accent);color:var(--on-accent)}
+.perfil-badge.gestor{background:var(--warn-soft);color:var(--warn)}
+.perfil-badge.vendedor{background:var(--ok-soft);color:var(--ok)}
+.drawer.wide{width:min(760px,100%)}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);overflow-x:auto;flex:none}
+.tabs button{border:none;background:none;padding:8px 12px;font-weight:600;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap}
+.tabs button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent)}
+.users{display:flex;flex-direction:column;gap:8px}
+.urow{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,.9fr) minmax(0,1.1fr) auto;gap:8px;align-items:center;border:1px solid var(--line);border-radius:8px;padding:10px;background:var(--bg)}
+.urow.off{opacity:.6}
+.urow .who{min-width:0}
+.urow .who b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.urow .who small{display:block;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.urow select,.urow input[type=text],.stg input[type=text],.cfg-in{border:1px solid var(--line);border-radius:8px;padding:6px 8px;background:var(--surface);width:100%;min-width:0}
+.urow .acts{display:flex;gap:6px;align-items:center}
+.switch{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;color:var(--muted);white-space:nowrap}
+.switch input{width:16px;height:16px;accent-color:var(--accent)}
+.perm-table{width:100%;border-collapse:collapse;font-size:.86rem}
+.perm-table th,.perm-table td{padding:8px 6px;border-bottom:1px solid var(--line);text-align:center;vertical-align:middle}
+.perm-table th:first-child,.perm-table td:first-child{text-align:left}
+.perm-table thead th{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.perm-table td small{display:block;color:var(--muted);font-size:.76rem}
+.perm-table input{width:18px;height:18px;accent-color:var(--accent)}
+.stg{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:8px;align-items:center;padding:6px 0;border-bottom:1px solid var(--line)}
+.stg .n{font-family:var(--f-mono);color:var(--muted);font-size:.8rem;width:22px;text-align:right}
+.stg .acts{display:flex;gap:4px}
+.btn.danger{color:var(--bad);border-color:var(--bad-soft)}
+.btn.danger:hover{background:var(--bad-soft)}
+@media (max-width:640px){.urow{grid-template-columns:1fr 1fr}.urow .who{grid-column:1/-1}.urow .acts{grid-column:1/-1;justify-content:space-between}}
 </style>
 </head>
 <body>
 
 <div class="login" id="login" hidden>
-  <form class="login-card" id="fLogin">
+  <div class="login-left">
+    <span class="login-copy">© <span id="anoCopy">2026</span>, RED Energia Solar.</span>
+    <div class="login-form-wrap">
+      <!-- entrar -->
+      <form class="login-form" id="fLogin" autocomplete="on">
+        <div><h1>Faça login na sua conta</h1><p class="sub">Digite seus dados para fazer login.</p></div>
+        <div class="lf"><label for="lEmail">Endereço de E-mail</label><input type="email" id="lEmail" required autocomplete="username" placeholder="seu@email.com"></div>
+        <div class="lf"><label for="lSenha">Senha</label><div class="pw"><input type="password" id="lSenha" required autocomplete="current-password" placeholder="••••••••"><button type="button" class="eye" data-eye="lSenha" aria-label="Mostrar senha"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div></div>
+        <label class="chk"><input type="checkbox" id="lLembrar"> Lembrar-me por 30 dias</label>
+        <button class="btn primary big" type="submit" id="lBtn">Login</button>
+        <p class="lmsg" id="lMsg" role="status"></p>
+        <p class="alt">Esqueceu a senha ou é seu primeiro acesso? <button type="button" class="link" id="lRecuperar">Recupere agora</button></p>
+      </form>
+      <!-- recuperar -->
+      <form class="login-form" id="fRecuperar" hidden autocomplete="on">
+        <div><h1>Recuperar senha</h1><p class="sub">Enviaremos um link para você criar uma nova senha. Use também no primeiro acesso.</p></div>
+        <div class="lf"><label for="rEmail">Endereço de E-mail</label><input type="email" id="rEmail" required autocomplete="username" placeholder="seu@email.com"></div>
+        <button class="btn primary big" type="submit" id="rBtn">Enviar link</button>
+        <p class="lmsg" id="rMsg" role="status"></p>
+        <p class="alt"><button type="button" class="link" id="rVoltar">← Voltar para o login</button></p>
+      </form>
+      <!-- nova senha -->
+      <form class="login-form" id="fNovaSenha" hidden autocomplete="off">
+        <div><h1>Criar nova senha</h1><p class="sub" id="nsSub">Escolha uma senha com pelo menos 8 caracteres.</p></div>
+        <div class="lf"><label for="nsSenha">Nova senha</label><div class="pw"><input type="password" id="nsSenha" required minlength="8" autocomplete="new-password"><button type="button" class="eye" data-eye="nsSenha" aria-label="Mostrar senha"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div></div>
+        <div class="lf"><label for="nsSenha2">Repita a senha</label><input type="password" id="nsSenha2" required minlength="8" autocomplete="new-password"></div>
+        <button class="btn primary big" type="submit" id="nsBtn">Salvar senha e entrar</button>
+        <p class="lmsg" id="nsMsg" role="status"></p>
+      </form>
+    </div>
+  </div>
+  <aside class="login-right" aria-label="RED Energia Solar">
     <span class="logo" role="img" aria-label="RED Energia Solar"></span>
-    <span class="eyebrow">Relacionamento / Indicadores</span>
-    <h1>Entrar no CRM</h1>
-    <div class="field"><label for="lEmail">Seu e-mail</label><input type="email" id="lEmail" required autocomplete="email" placeholder="voce@gmail.com"></div>
-    <button class="btn primary" type="submit" id="lBtn">Receber link de acesso</button>
-    <p class="muted" id="lMsg" style="margin:0">Enviamos um link para o seu e-mail. É só clicar nele para entrar.</p>
-  </form>
+    <h2>Se é RED, é REAL.</h2>
+    <p class="lead">Energia solar com responsabilidade, experiência e dignidade — do primeiro contato à homologação.</p>
+    <ul class="vals">
+      <li><b>Responsabilidade</b><span>Cada etapa cuidada com a atenção que o cliente merece.</span></li>
+      <li><b>Experiência</b><span>Da compra à instalação, visibilidade total em cada fase.</span></li>
+      <li><b>Dignidade</b><span>O descanso do cliente começa na assinatura do contrato.</span></li>
+    </ul>
+  </aside>
 </div>
 <div class="wrap" id="app" hidden>
   <header class="top">
     <div class="brand">
       <div class="brandbar"><span class="logo" role="img" aria-label="RED Energia Solar"></span><span class="vr"></span><span class="stamp" aria-label="Se é RED, é real!"><span>Se é RED,</span><span>é real!</span></span></div>
-      <span class="eyebrow" style="margin-top:10px">Relacionamento / Indicadores</span>
-      <h1>Clientes homologados → indicadores</h1>
+      <span class="eyebrow" style="margin-top:10px" id="hEyebrow">Relacionamento / Indicadores</span>
+      <h1 id="hTitulo">Clientes homologados → indicadores</h1>
     </div>
     <div class="row">
-      <span class="userbox"><span id="uEmail"></span><button class="btn small" id="btnSair" type="button">Sair</button></span>
-      <button class="btn primary" id="btnNovo" type="button">+ Novo cliente</button>
+      <span class="userbox"><span id="uEmail"></span><span class="perfil-badge" id="uPerfil" hidden></span><button class="btn small" id="btnSair" type="button">Sair</button></span>
+      <button class="btn" id="btnExport" type="button" hidden>Exportar CSV</button>
+      <button class="btn" id="btnConfig" type="button" hidden aria-label="Configurações"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>Configurações</button>
+      <button class="btn primary" id="btnNovo" type="button" hidden>+ Novo cliente</button>
     </div>
   </header>
 
   <div id="banner" class="banner" hidden></div>
 
-  <section class="kpis" aria-label="Indicadores">
+  <section class="kpis" id="kpis" aria-label="Indicadores">
     <div class="kpi"><span class="v mono" id="kLig">–</span><span class="l">Contatos registrados hoje</span></div>
     <div class="kpi"><span class="v mono" id="kTrat">–</span><span class="l">Clientes tratados hoje</span></div>
     <button class="kpi alert" id="kRetBtn" type="button" aria-pressed="false"><span class="v mono" id="kRet">–</span><span class="l">Retornos para hoje / atrasados</span></button>
@@ -225,7 +317,7 @@ button.kpi[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 0 
 <script src="supabase.js?v=2117"></script>
 <script>document.write('<script src="config.js?t='+Date.now()+'"><\/script>')</script>
 <script>
-const STAGES=[
+const STAGES_PADRAO=[
   {id:"lista",nome:"Lista de Contatos"},
   {id:"lead",nome:"Lead"},
   {id:"reuniao",nome:"Reunião Agendada"},
@@ -234,7 +326,9 @@ const STAGES=[
   {id:"semcontato",nome:"Sem Contato"},
   {id:"seminteresse",nome:"Sem Interesse"}
 ];
-const STAGE=Object.fromEntries(STAGES.map(s=>[s.id,s.nome]));
+let STAGES=STAGES_PADRAO.map(s=>({...s}));
+let STAGE=Object.fromEntries(STAGES.map(s=>[s.id,s.nome]));
+const STAGES_FIXAS=new Set(STAGES_PADRAO.map(s=>s.id));
 const TIPOS=["Ligação","WhatsApp","Reunião","Observação"];
 const RESULTADOS={
   "Ligação":["Atendeu","Não atendeu","Caixa postal","Número errado","Pediu retorno","Agendou reunião","Indicou contato","Sem interesse"],
@@ -242,9 +336,31 @@ const RESULTADOS={
   "Reunião":["Realizada","Remarcada","Cliente não compareceu","Proposta apresentada","Indicou contato"],
   "Observação":["Anotação"]
 };
-const PAGE=40;
+let PAGE=40;
 /* Automação: ao sair de "Lista de Contatos" para "Lead", o card ganha estas tarefas */
-const TAREFAS_LEAD=["1º Contato","2º Contato","3º Contato","4º Contato","5º Contato"];
+let TAREFAS_LEAD=["1º Contato","2º Contato","3º Contato","4º Contato","5º Contato"];
+
+/* ---------- Perfis e permissões ---------- */
+const PERFIS={admin:"Admin",gestor:"Gestor",vendedor:"Vendedor"};
+const PERMS=[
+  ["ver_todos","Ver clientes de todos os vendedores","Desligado: vê só os clientes do vendedor vinculado ao usuário"],
+  ["ver_indicadores","Ver indicadores do topo",""],
+  ["criar_cliente","Adicionar clientes",""],
+  ["editar_cliente","Editar dados do cliente","Nome, telefone, vendedor e data do APP"],
+  ["excluir_cliente","Excluir clientes","Apaga o cliente e o histórico"],
+  ["registrar","Registrar contatos e concluir tarefas",""],
+  ["mover","Mover cards entre etapas",""],
+  ["exportar","Exportar lista (CSV)",""],
+  ["usuarios","Gerenciar usuários","Liberar e-mails, trocar perfil, desativar"],
+  ["config","Alterar configurações","Permissões, funil, tarefas e dados gerais"]
+];
+const PERM_PADRAO={
+  gestor:{ver_todos:true,ver_indicadores:true,criar_cliente:true,editar_cliente:true,excluir_cliente:false,registrar:true,mover:true,exportar:true,usuarios:false,config:false},
+  vendedor:{ver_todos:true,ver_indicadores:true,criar_cliente:true,editar_cliente:false,excluir_cliente:false,registrar:true,mover:true,exportar:false,usuarios:false,config:false}
+};
+const CFG={permissoes:JSON.parse(JSON.stringify(PERM_PADRAO)),funil:null,tarefas:null,geral:{}};
+const P={perfil:"vendedor",vendedorNome:"",legado:false};
+function pode(k){if(P.perfil==="admin")return true;const p=CFG.permissoes[P.perfil]||{};return k in p?!!p[k]:!!(PERM_PADRAO[P.perfil]||{})[k]}
 const novasTarefas=agora=>TAREFAS_LEAD.map((t,i)=>({id:"t"+(i+1),titulo:t,feita:false,criadaEm:agora}));
 const precisaTarefas=(c,de,para)=>de==="lista"&&para==="lead"&&!(c.tarefas&&c.tarefas.length);
 const S={clientes:new Map(),ativ:[],db:null,user:null,me:null,canWrite:true,filtro:{q:"",vend:"",ord:"ret",ret:false},open:null,dragId:null,shown:{},names:{}};
@@ -274,7 +390,9 @@ function retornoInfo(c){
 /* ---------- render board ---------- */
 function filtrados(){
   const {q,vend,ord,ret}=S.filtro;const qq=q.trim().toLowerCase();const qd=qq.replace(/\D/g,"");
+  const meuV=P.vendedorNome.trim().toLowerCase();const soMeus=!pode("ver_todos");
   let arr=[...S.clientes.values()].filter(c=>{
+    if(soMeus&&String(c.vendedor||"").trim().toLowerCase()!==meuV)return false;
     if(vend&&c.vendedor!==vend)return false;
     if(ret){const r=retornoInfo(c);if(!r||!r.due)return false}
     if(qq){const hit=(c.nome||"").toLowerCase().includes(qq)||(qd&&String(c.telefone||"").includes(qd));if(!hit)return false}
@@ -296,7 +414,7 @@ function cardHTML(c){
   const tf=c.tarefas||[];if(tf.length){const f=tf.filter(t=>t.feita).length;chips.push(`<span class="chip ${f===tf.length?"ok":"violet"}">${f}/${tf.length} contatos</span>`)}
   const ni=(c.indicacoes||[]).length;if(ni)chips.push(`<span class="chip ok">${ni} indicação${ni>1?"ões":""}</span>`);
   const ult=c.ultimoContato?`Últ. contato ${fmtData(isoDia(c.ultimoContato))}`:"Sem contato ainda";
-  return `<div class="card" draggable="${S.canWrite}" data-id="${esc(c.id)}" tabindex="0" role="button" aria-label="Abrir ${esc(c.nome)}">
+  return `<div class="card" draggable="${pode("mover")}" data-id="${esc(c.id)}" tabindex="0" role="button" aria-label="Abrir ${esc(c.nome)}">
     <div class="name" title="${esc(c.nome)}">${esc(c.nome)}</div>
     <div class="phone mono">${esc(fmtFone(c.telefone))}</div>
     ${chips.length?`<div class="chips">${chips.join("")}</div>`:""}
@@ -332,23 +450,26 @@ function renderVendedores(){
   sel.innerHTML=`<option value="">Todos os vendedores</option>`+vs.map(v=>`<option ${v===cur?"selected":""}>${esc(v)}</option>`).join("");
 }
 
-function renderAll(){renderBoard();renderKPIs();if(S.open)renderDrawer()}
+function renderAll(){renderBoard();renderKPIs();if(S.open&&!String(S.open).startsWith("__"))renderDrawer()}
 
 /* ---------- drawer ---------- */
 let form={tipo:"Acompanhamento",resultado:"",indic:[]};
-function openDrawer(id){S.open=id;form={tipo:"Acompanhamento",resultado:"",indic:[]};$("scrim").hidden=false;$("drawer").hidden=false;renderDrawer(true)}
-function closeDrawer(){S.open=null;$("scrim").hidden=true;$("drawer").hidden=true}
+function openDrawer(id){S.open=id;S.editando=false;form={tipo:"Acompanhamento",resultado:"",indic:[]};$("drawer").classList.toggle("wide",id==="__config");$("scrim").hidden=false;$("drawer").hidden=false;renderDrawer(true)}
+function closeDrawer(){S.open=null;$("scrim").hidden=true;$("drawer").hidden=true;$("drawer").classList.remove("wide")}
 
 function renderDrawer(first){
   const id=S.open;
   if(id==="__novo")return renderNovo();
+  if(id==="__config")return renderConfig();
   const c=S.clientes.get(id);if(!c){closeDrawer();return}
   // keep typed values across live re-renders
   const keep={};if(!first)["fNota","fProx","fEtapa","fReuData","fRep","fIndNome","fIndFone"].forEach(k=>{const el=$(k);if(el)keep[k]=el.value});
   $("dEyebrow").textContent=STAGE[c.etapa]||"Cliente";$("dTitle").textContent=c.nome;
   const hist=S.ativ.filter(a=>a.clienteId===id);
-  const ro=!S.canWrite;
+  const ro=!pode("registrar");const roMover=!pode("mover");
+  if(S.editando&&pode("editar_cliente")){renderEditarCliente(c);return}
   $("dBody").innerHTML=`
+    ${pode("editar_cliente")||pode("excluir_cliente")?`<div class="row" style="justify-content:flex-end">${pode("editar_cliente")?`<button class="btn small" type="button" id="btnEditCli">Editar dados</button>`:""}${pode("excluir_cliente")?`<button class="btn small danger" type="button" id="btnDelCli">Excluir cliente</button>`:""}</div>`:""}
     <dl class="meta">
       <dt>Telefone</dt><dd><span class="mono">${esc(fmtFone(c.telefone))}</span> <button class="btn small" type="button" id="cpFone">Copiar</button> ${waLink(c.telefone)?`<a class="btn small" href="${waLink(c.telefone)}" target="_blank" rel="noopener">WhatsApp</a>`:""}</dd>
       <dt>Vendedor original</dt><dd>${esc(c.vendedor||"—")}</dd>
@@ -357,9 +478,9 @@ function renderDrawer(first){
       ${c.reuniaoEm?`<dt>Reunião</dt><dd>${esc(fmtDH(c.reuniaoEm))}${c.representante?" · "+esc(c.representante):""}</dd>`:""}
       <dt>Tentativas</dt><dd>${c.tentativas||0}</dd>
     </dl>
-    <div class="field"><label for="qEtapa">Etapa do card</label><select id="qEtapa" ${ro?"disabled":""}>${STAGES.map(s=>`<option value="${s.id}" ${s.id===c.etapa?"selected":""}>${s.nome}</option>`).join("")}</select></div>
+    <div class="field"><label for="qEtapa">Etapa do card</label><select id="qEtapa" ${roMover?"disabled":""}>${STAGES.map(s=>`<option value="${s.id}" ${s.id===c.etapa?"selected":""}>${s.nome}</option>`).join("")}</select></div>
 
-    ${ro?`<div class="banner">Você pode ver, mas não registrar. Peça acesso de Colaborador a quem compartilhou este painel.</div>`:`
+    ${ro?`<div class="banner">Seu perfil (${esc(PERFIS[P.perfil]||P.perfil)}) pode ver este cliente, mas não registrar contatos.</div>`:`
     <form class="section" id="fAtiv" autocomplete="off">
       <h3>Registrar acompanhamento</h3>
       <div class="field"><label for="fNota">O que foi conversado</label><textarea id="fNota" placeholder="Ex.: cliente satisfeito com a usina, vai passar contato do irmão que tem comércio…"></textarea></div>
@@ -406,6 +527,210 @@ function renderNovo(){
   </form>`;
 }
 
+/* ---------- editar / excluir cliente ---------- */
+function renderEditarCliente(c){
+  $("dBody").innerHTML=`<form class="section" id="fEditCli" autocomplete="off">
+    <h3>Editar dados do cliente</h3>
+    <div class="field"><label for="eNome">Nome</label><input id="eNome" required value="${esc(c.nome)}"></div>
+    <div class="row"><div class="field"><label for="eFone">Telefone</label><input id="eFone" type="tel" required value="${esc(c.telefone)}"></div>
+    <div class="field"><label for="eVend">Vendedor original</label><input id="eVend" list="dlVend" value="${esc(c.vendedor)}"></div></div>
+    <div class="row"><div class="field"><label for="eApp">APP entregue em</label><input id="eApp" type="date" value="${esc((c.appEntregueEm||"").slice(0,10))}"></div>
+    <div class="field"><label for="eOrigem">Origem</label><input id="eOrigem" value="${esc(c.origem)}"></div></div>
+    ${datalistVendedores()}
+    <div class="row"><button class="btn primary" type="submit">Salvar alterações</button><button class="btn" type="button" id="btnCancelEdit">Cancelar</button><span class="muted" id="eMsg"></span></div>
+  </form>`;
+}
+function vendedoresConhecidos(){return [...new Set([...S.clientes.values()].map(c=>c.vendedor).filter(Boolean))].sort((a,b)=>a.localeCompare(b,"pt-BR"))}
+function datalistVendedores(){return `<datalist id="dlVend">${vendedoresConhecidos().map(v=>`<option value="${esc(v)}">`).join("")}</datalist>`}
+async function salvarEdicaoCliente(e){
+  e.preventDefault();const c=S.clientes.get(S.open);if(!c)return;
+  const nome=$("eNome").value.trim();const tel=$("eFone").value.replace(/\D/g,"");
+  if(!nome||!tel){$("eMsg").textContent="Preencha nome e telefone.";return}
+  const agora=new Date().toISOString();
+  const upd={nome,telefone:tel,vendedor:$("eVend").value.trim(),appEntregueEm:$("eApp").value||"",origem:$("eOrigem").value.trim(),atualizadoEm:agora};
+  const mud=[["nome","Nome"],["telefone","Telefone"],["vendedor","Vendedor"],["appEntregueEm","APP entregue"],["origem","Origem"]].filter(([k])=>{const a=String(c[k]||""),b=String(upd[k]||"");return k==="appEntregueEm"?a.slice(0,10)!==b.slice(0,10):a!==b}).map(([,n])=>n);
+  if(!mud.length){S.editando=false;renderDrawer(true);return}
+  try{
+    await S.db.doc("clientes/"+c.id).update(upd);
+    await S.db.collection("atividades").add({clienteId:c.id,clienteNome:nome,em:agora,tipo:"Observação",resultado:"Dados editados",nota:"Alterado: "+mud.join(", "),etapaDe:c.etapa,etapaPara:c.etapa,proximoContato:"",autorId:S.me||""});
+    Object.assign(c,upd);S.editando=false;toast("Dados atualizados");renderDrawer(true);renderBoard();
+  }catch(err){$("eMsg").textContent=erroMsg(err)}
+}
+async function excluirCliente(){
+  const c=S.clientes.get(S.open);if(!c||!pode("excluir_cliente"))return;
+  if(!confirm(`Excluir ${c.nome} e todo o histórico? Isso não pode ser desfeito.`))return;
+  try{
+    const a=await sb.from("atividades").delete().eq("cliente_id",c.id);if(a.error)throw a.error;
+    const r=await sb.from("clientes").delete().eq("id",c.id);if(r.error)throw r.error;
+    S.clientes.delete(c.id);closeDrawer();renderAll();toast("Cliente excluído");agendarRecarga();
+  }catch(err){toast(erroMsg(err))}
+}
+
+/* ---------- exportar ---------- */
+function exportarCSV(){
+  if(!pode("exportar"))return;
+  const cols=[["nome","Nome"],["telefone","Telefone"],["vendedor","Vendedor original"],["etapa","Etapa"],["appEntregueEm","APP entregue"],["proximoContato","Próximo contato"],["ultimoContato","Último contato"],["tentativas","Tentativas"],["reuniaoEm","Reunião"],["representante","Representante"],["ultimaNota","Última nota"]];
+  const q=v=>`"${String(v??"").replace(/"/g,'""')}"`;
+  const linhas=filtrados().map(c=>cols.map(([k])=>k==="etapa"?q(STAGE[c.etapa]||c.etapa):q(c[k])).join(";"));
+  const csv="﻿"+[cols.map(([,n])=>q(n)).join(";"),...linhas].join("\r\n");
+  const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));
+  a.download=`crm-relacionamento-${hojeISO()}.csv`;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500);
+  toast(`${linhas.length} clientes exportados`);
+}
+
+/* ---------- configurações ---------- */
+let CF={aba:null,membros:[],perm:null,etapas:null,tarefas:"",geral:null};
+function abasConfig(){const a=[];if(pode("usuarios"))a.push(["usuarios","Usuários"]);if(pode("config"))a.push(["permissoes","Perfis e permissões"],["funil","Funil"],["geral","Geral"]);return a}
+async function abrirConfig(){
+  CF.aba=abasConfig()[0]?.[0];if(!CF.aba)return;
+  CF.perm=JSON.parse(JSON.stringify(CFG.permissoes));
+  CF.etapas=STAGES.map(s=>({...s}));CF.tarefas=TAREFAS_LEAD.join("\n");
+  CF.geral={titulo:$("hTitulo").textContent,eyebrow:$("hEyebrow").textContent,pagina:PAGE};
+  openDrawer("__config");await carregarMembros();renderConfig();
+}
+async function carregarMembros(){
+  const m=await sb.from("membros").select("*");
+  if(!m.error){CF.membros=m.data.sort((a,b)=>(a.nome||a.email).localeCompare(b.nome||b.email,"pt-BR"));m.data.forEach(x=>MEMBROS[x.email.toLowerCase()]=x.nome||x.email.split("@")[0])}
+}
+function renderConfig(){
+  $("dEyebrow").textContent="Configurações";$("dTitle").textContent="Perfis, permissões e ajustes";
+  const abas=abasConfig();
+  const tabs=`<div class="tabs" role="tablist">${abas.map(([id,n])=>`<button type="button" role="tab" data-aba="${id}" aria-selected="${id===CF.aba}">${n}</button>`).join("")}</div>`;
+  const leg=P.legado?`<div class="banner">Os perfis ainda não estão ativos no banco. Rode o arquivo <b>setup-perfis-permissoes.sql</b> no Supabase (SQL Editor) — até lá, todos continuam com acesso total.</div>`:"";
+  $("dBody").innerHTML=tabs+leg+({usuarios:htmlUsuarios,permissoes:htmlPermissoes,funil:htmlFunil,geral:htmlGeral}[CF.aba]||(()=>""))();
+}
+function htmlUsuarios(){
+  const souAdmin=P.perfil==="admin";
+  const optsPerfil=(sel,dis)=>Object.entries(PERFIS).map(([k,n])=>`<option value="${k}" ${k===sel?"selected":""} ${k==="admin"&&!souAdmin?"disabled":""}>${n}</option>`).join("");
+  const rows=CF.membros.map((m,i)=>{
+    const eu=m.email.toLowerCase()===String(S.me).toLowerCase();
+    const bloqueado=eu||(m.perfil==="admin"&&!souAdmin);const ativo=m.ativo!==false;
+    return `<div class="urow ${ativo?"":"off"}" data-u="${i}">
+      <div class="who"><b>${esc(m.nome||m.email.split("@")[0])}${eu?" (você)":""}</b><small>${esc(m.email)}</small></div>
+      <select data-uf="perfil" aria-label="Perfil" ${bloqueado||P.legado?"disabled":""}>${optsPerfil(m.perfil||"vendedor")}</select>
+      <input type="text" data-uf="vendedor_nome" list="dlVend" placeholder="Vendedor vinculado" aria-label="Vendedor vinculado" value="${esc(m.vendedor_nome||"")}" ${(m.perfil==="admin"&&!souAdmin)||P.legado?"disabled":""}>
+      <div class="acts"><label class="switch"><input type="checkbox" data-uf="ativo" ${ativo?"checked":""} ${bloqueado||P.legado?"disabled":""}>Ativo</label>
+      ${bloqueado?`<span style="width:30px" aria-hidden="true"></span>`:`<button class="btn small danger" type="button" data-udel="${i}" aria-label="Remover acesso">×</button>`}</div>
+    </div>`}).join("");
+  return `<div class="section"><h3>Equipe com acesso (${CF.membros.length})</h3>
+    <p class="muted" style="margin:0;font-size:.82rem">Alterações são salvas na hora. “Vendedor vinculado” é o nome usado no campo Vendedor original dos clientes — vale para quem não pode ver todos os clientes.</p>
+    <div class="users">${rows||`<p class="muted">Nenhum usuário.</p>`}</div>${datalistVendedores()}</div>
+  <form class="section" id="fNovoUser" autocomplete="off"><h3>Liberar novo acesso</h3>
+    <div class="row"><div class="field"><label for="uNovoEmail">E-mail</label><input id="uNovoEmail" type="email" required placeholder="pessoa@gmail.com"></div>
+    <div class="field"><label for="uNovoNome">Nome</label><input id="uNovoNome" placeholder="Como aparece no CRM"></div></div>
+    <div class="row"><div class="field"><label for="uNovoPerfil">Perfil</label><select id="uNovoPerfil">${optsPerfil("vendedor")}</select></div>
+    <div class="field"><label for="uNovoVend">Vendedor vinculado</label><input id="uNovoVend" list="dlVend" placeholder="Opcional"></div></div>
+    <div class="row"><button class="btn primary" type="submit" ${P.legado?"disabled":""}>Liberar acesso</button><span class="muted" id="uMsg">No primeiro acesso a pessoa clica em “Recupere agora”, recebe um link e cria a senha.</span></div>
+  </form>`;
+}
+function htmlPermissoes(){
+  const head=`<tr><th>Permissão</th><th>Admin</th><th>Gestor</th><th>Vendedor</th></tr>`;
+  const body=PERMS.map(([k,n,d])=>`<tr><td>${esc(n)}${d?`<small>${esc(d)}</small>`:""}</td>
+    <td><input type="checkbox" checked disabled aria-label="Admin: ${esc(n)}"></td>
+    ${["gestor","vendedor"].map(p=>`<td><input type="checkbox" data-perm="${p}.${k}" ${CF.perm[p]&&CF.perm[p][k]?"checked":""} aria-label="${PERFIS[p]}: ${esc(n)}"></td>`).join("")}</tr>`).join("");
+  return `<div class="section"><h3>O que cada perfil pode fazer</h3>
+    <p class="muted" style="margin:0;font-size:.82rem">Admin tem acesso total e não pode ser limitado. As regras também valem no banco de dados, não só na tela.</p>
+    <div style="overflow-x:auto"><table class="perm-table"><thead>${head}</thead><tbody>${body}</tbody></table></div>
+    <div class="row"><button class="btn primary" type="button" data-salvar="permissoes">Salvar permissões</button><button class="btn" type="button" id="permPadrao">Restaurar padrão</button><span class="muted" id="cfgMsg"></span></div></div>`;
+}
+function htmlFunil(){
+  const cnt={};S.clientes.forEach(c=>cnt[c.etapa]=(cnt[c.etapa]||0)+1);
+  const rows=CF.etapas.map((s,i)=>`<div class="stg"><span class="n">${i+1}</span>
+    <input type="text" data-stg="${i}" value="${esc(s.nome)}" aria-label="Nome da etapa ${i+1}">
+    <div class="acts"><button class="btn small" type="button" data-up="${i}" ${i?"":"disabled"} aria-label="Subir">↑</button><button class="btn small" type="button" data-down="${i}" ${i<CF.etapas.length-1?"":"disabled"} aria-label="Descer">↓</button>
+    ${STAGES_FIXAS.has(s.id)?`<span class="muted" style="font-size:.75rem;align-self:center;padding-left:4px">${cnt[s.id]||0}</span>`:`<button class="btn small danger" type="button" data-stgdel="${i}" ${cnt[s.id]?`disabled title="Mova os ${cnt[s.id]} clientes antes"`:""} aria-label="Remover etapa">×</button>`}</div></div>`).join("");
+  return `<div class="section"><h3>Etapas do funil</h3>
+    <p class="muted" style="margin:0;font-size:.82rem">Renomeie e reordene as colunas. As etapas originais não podem ser removidas porque têm automações (tarefas, reunião, indicador).</p>
+    <div>${rows}</div>
+    <div class="row"><input class="cfg-in" id="novaEtapa" placeholder="Nova etapa" style="flex:1 1 180px"><button class="btn small" type="button" id="addEtapa">Adicionar etapa</button></div></div>
+  <div class="section"><h3>Tarefas automáticas ao virar Lead</h3>
+    <p class="muted" style="margin:0;font-size:.82rem">Uma tarefa por linha. Criadas quando o card sai de “${esc(CF.etapas.find(s=>s.id==="lista")?.nome||"Lista")}” para “${esc(CF.etapas.find(s=>s.id==="lead")?.nome||"Lead")}”.</p>
+    <textarea class="cfg-in" id="cfgTarefas" rows="6">${esc(CF.tarefas)}</textarea></div>
+  <div class="row"><button class="btn primary" type="button" data-salvar="funil">Salvar funil e tarefas</button><span class="muted" id="cfgMsg"></span></div>`;
+}
+function htmlGeral(){
+  return `<form class="section" id="fGeral" autocomplete="off"><h3>Painel</h3>
+    <div class="field"><label for="gEyebrow">Linha de cima</label><input id="gEyebrow" value="${esc(CF.geral.eyebrow)}"></div>
+    <div class="field"><label for="gTitulo">Título</label><input id="gTitulo" value="${esc(CF.geral.titulo)}"></div>
+    <div class="field" style="max-width:220px"><label for="gPagina">Cards por coluna (antes do “Mostrar mais”)</label><input id="gPagina" type="number" min="10" max="500" value="${esc(CF.geral.pagina)}"></div>
+    <div class="row"><button class="btn primary" type="button" data-salvar="geral">Salvar</button><span class="muted" id="cfgMsg"></span></div></form>`;
+}
+async function salvarConfig(id,valor){
+  const r=await sb.from("configuracoes").upsert({id,valor,atualizado_em:new Date().toISOString()});
+  if(r.error)throw r.error;CFG[id]=valor;
+}
+async function onSalvarConfig(qual){
+  const msg=$("cfgMsg");if(msg)msg.textContent="Salvando…";
+  try{
+    if(qual==="permissoes"){await salvarConfig("permissoes",CF.perm)}
+    else if(qual==="funil"){
+      CF.etapas.forEach((s,i)=>{const el=document.querySelector(`[data-stg="${i}"]`);if(el)s.nome=el.value.trim()||s.nome});
+      const tf=$("cfgTarefas").value.split("\n").map(s=>s.trim()).filter(Boolean);
+      await salvarConfig("funil",{etapas:CF.etapas});await salvarConfig("tarefas",{lista:tf});CF.tarefas=tf.join("\n");
+    }else if(qual==="geral"){
+      const g={titulo:$("gTitulo").value.trim(),eyebrow:$("gEyebrow").value.trim(),pagina:Math.max(10,Math.min(500,+$("gPagina").value||40))};
+      await salvarConfig("geral",g);CF.geral=g;
+    }
+    aplicarConfig();renderAll();toast("Configurações salvas");renderConfig();
+  }catch(err){if(msg)msg.textContent=erroMsg(err)}
+}
+async function atualizarMembro(i,campos){
+  const m=CF.membros[i];if(!m)return;
+  const r=await sb.from("membros").update(campos).eq("email",m.email);
+  if(r.error){toast(erroMsg(r.error));renderConfig();return}
+  Object.assign(m,campos);if(campos.nome)MEMBROS[m.email.toLowerCase()]=campos.nome;toast("Usuário atualizado");renderConfig();
+}
+async function removerMembro(i){
+  const m=CF.membros[i];if(!m||!confirm(`Remover o acesso de ${m.nome||m.email}?`))return;
+  const r=await sb.from("membros").delete().eq("email",m.email);
+  if(r.error){toast(erroMsg(r.error));return}
+  CF.membros.splice(i,1);toast("Acesso removido");renderConfig();
+}
+async function novoMembro(e){
+  e.preventDefault();const email=$("uNovoEmail").value.trim().toLowerCase();
+  if(!/^\S+@\S+\.\S+$/.test(email)){$("uMsg").textContent="E-mail inválido.";return}
+  if(CF.membros.some(m=>m.email.toLowerCase()===email)){$("uMsg").textContent="Esse e-mail já tem acesso.";return}
+  const row={email,nome:$("uNovoNome").value.trim()||email.split("@")[0],perfil:$("uNovoPerfil").value,ativo:true,vendedor_nome:$("uNovoVend").value.trim()||null};
+  const r=await sb.from("membros").insert(row);
+  if(r.error){$("uMsg").textContent=erroMsg(r.error);return}
+  await carregarMembros();toast("Acesso liberado");renderConfig();
+}
+function aplicarConfig(){
+  const f=CFG.funil&&Array.isArray(CFG.funil.etapas)&&CFG.funil.etapas.length?CFG.funil.etapas:null;
+  if(f){const ids=new Set(f.map(s=>s.id));STAGES=[...f.map(s=>({id:s.id,nome:s.nome})),...STAGES_PADRAO.filter(s=>!ids.has(s.id))]}
+  STAGE=Object.fromEntries(STAGES.map(s=>[s.id,s.nome]));
+  if(CFG.tarefas&&Array.isArray(CFG.tarefas.lista)&&CFG.tarefas.lista.length)TAREFAS_LEAD=CFG.tarefas.lista;
+  const g=CFG.geral||{};if(g.titulo)$("hTitulo").textContent=g.titulo;if(g.eyebrow)$("hEyebrow").textContent=g.eyebrow;if(g.pagina)PAGE=+g.pagina||40;
+  // permissões na tela
+  $("btnNovo").hidden=!pode("criar_cliente");
+  $("btnExport").hidden=!pode("exportar");
+  $("btnConfig").hidden=!(pode("config")||pode("usuarios"));
+  $("kpis").hidden=!pode("ver_indicadores");
+  $("fVend").hidden=!pode("ver_todos");
+  S.canWrite=pode("registrar");
+  const b=$("uPerfil");b.hidden=false;b.className="perfil-badge "+P.perfil;b.textContent=PERFIS[P.perfil]||P.perfil;
+}
+function configClick(e){
+  const ab=e.target.closest("[data-aba]");if(ab){CF.aba=ab.dataset.aba;renderConfig();return true}
+  const sv=e.target.closest("[data-salvar]");if(sv){onSalvarConfig(sv.dataset.salvar);return true}
+  const ud=e.target.closest("[data-udel]");if(ud){removerMembro(+ud.dataset.udel);return true}
+  if(e.target.id==="permPadrao"){CF.perm=JSON.parse(JSON.stringify(PERM_PADRAO));renderConfig();return true}
+  const sync=()=>CF.etapas.forEach((s,i)=>{const el=document.querySelector(`[data-stg="${i}"]`);if(el)s.nome=el.value});
+  const up=e.target.closest("[data-up]"),dn=e.target.closest("[data-down]");
+  if(up||dn){sync();const i=+(up?up.dataset.up:dn.dataset.down),j=up?i-1:i+1;[CF.etapas[i],CF.etapas[j]]=[CF.etapas[j],CF.etapas[i]];CF.tarefas=$("cfgTarefas").value;renderConfig();return true}
+  const sd=e.target.closest("[data-stgdel]");if(sd){sync();CF.etapas.splice(+sd.dataset.stgdel,1);CF.tarefas=$("cfgTarefas").value;renderConfig();return true}
+  if(e.target.id==="addEtapa"){const n=$("novaEtapa").value.trim();if(!n){$("novaEtapa").focus();return true}sync();
+    CF.etapas.push({id:"e"+Date.now().toString(36),nome:n});CF.tarefas=$("cfgTarefas").value;renderConfig();return true}
+  return false;
+}
+function configChange(e){
+  const pm=e.target.dataset.perm;if(pm){const[p,k]=pm.split(".");(CF.perm[p]=CF.perm[p]||{})[k]=e.target.checked;return true}
+  const uf=e.target.dataset.uf;if(uf){const i=+e.target.closest("[data-u]").dataset.u;
+    const v=uf==="ativo"?e.target.checked:uf==="vendedor_nome"?(e.target.value.trim()||null):e.target.value;
+    atualizarMembro(i,{[uf]:v});return true}
+  return false;
+}
+
 function resolveNames(ids){
   ids.filter(Boolean).forEach(i=>{if(!(i in S.names))S.names[i]=(MEMBROS[i.toLowerCase()]||i.split("@")[0])});
   document.querySelectorAll("[data-uid]").forEach(el=>{el.textContent=S.names[el.dataset.uid]||""});
@@ -440,6 +765,7 @@ async function salvarAtividade(e){
 
 async function moverEtapa(id,etapa){
   const c=S.clientes.get(id);if(!c||c.etapa===etapa||!S.db)return;
+  if(!pode("mover")){toast("Seu perfil não pode mover cards");renderAll();return}
   const de=c.etapa;const agora=new Date().toISOString();
   const extra=precisaTarefas(c,de,etapa)?{tarefas:novasTarefas(agora)}:{};
   c.etapa=etapa;if(extra.tarefas)c.tarefas=extra.tarefas;renderAll();
@@ -487,6 +813,10 @@ $("board").addEventListener("dragover",e=>{const col=e.target.closest(".col");if
 $("board").addEventListener("drop",e=>{const col=e.target.closest(".col");if(!col||!S.dragId)return;e.preventDefault();const id=S.dragId;S.dragId=null;col.classList.remove("drop");moverEtapa(id,col.dataset.stage)});
 
 $("dBody").addEventListener("click",async e=>{
+  if(S.open==="__config"){configClick(e);return}
+  if(e.target.id==="btnEditCli"){S.editando=true;renderDrawer(true);return}
+  if(e.target.id==="btnCancelEdit"){S.editando=false;renderDrawer(true);return}
+  if(e.target.id==="btnDelCli"){excluirCliente();return}
   const t=e.target.closest("[data-tipo]");if(t){form.tipo=t.dataset.tipo;form.resultado="";renderDrawer();return}
   const r=e.target.closest("[data-res]");if(r){form.resultado=form.resultado===r.dataset.res?"":r.dataset.res;
     const et=$("fEtapa");const map={"Agendou reunião":"reuniao","Indicou contato":"indicador","Sem interesse":"seminteresse","Proposta apresentada":"proposta"};
@@ -497,11 +827,13 @@ $("dBody").addEventListener("click",async e=>{
   const rm=e.target.closest("[data-rmind]");if(rm){form.indic.splice(+rm.dataset.rmind,1);renderDrawer();return}
   if(e.target.id==="cpFone"){const c=S.clientes.get(S.open);try{await navigator.clipboard.writeText(String(c.telefone));toast("Telefone copiado")}catch(_){toast(fmtFone(c.telefone))}}
 });
-$("dBody").addEventListener("change",e=>{if(e.target.id==="qEtapa"){moverEtapa(S.open,e.target.value);return}const t=e.target.closest("[data-task]");if(t)toggleTarefa(t.dataset.task,t.checked)});
-$("dBody").addEventListener("submit",e=>{if(e.target.id==="fAtiv")salvarAtividade(e);else if(e.target.id==="fNovo")novoCliente(e)});
+$("dBody").addEventListener("change",e=>{if(S.open==="__config"){configChange(e);return}if(e.target.id==="qEtapa"){moverEtapa(S.open,e.target.value);return}const t=e.target.closest("[data-task]");if(t)toggleTarefa(t.dataset.task,t.checked)});
+$("dBody").addEventListener("submit",e=>{if(e.target.id==="fAtiv")salvarAtividade(e);else if(e.target.id==="fNovo")novoCliente(e);else if(e.target.id==="fEditCli")salvarEdicaoCliente(e);else if(e.target.id==="fNovoUser")novoMembro(e);else if(e.target.id==="fGeral"){e.preventDefault();onSalvarConfig("geral")}});
 $("dClose").onclick=closeDrawer;$("scrim").onclick=closeDrawer;
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&S.open)closeDrawer()});
-$("btnNovo").onclick=()=>openDrawer("__novo");
+$("btnNovo").onclick=()=>{if(pode("criar_cliente"))openDrawer("__novo")};
+$("btnConfig").onclick=abrirConfig;
+$("btnExport").onclick=exportarCSV;
 let qT;$("q").addEventListener("input",e=>{clearTimeout(qT);qT=setTimeout(()=>{S.filtro.q=e.target.value;renderBoard()},150)});
 $("fVend").onchange=e=>{S.filtro.vend=e.target.value;renderBoard()};
 $("fOrd").onchange=e=>{S.filtro.ord=e.target.value;renderBoard()};
@@ -510,7 +842,18 @@ $("kRetBtn").onclick=()=>{S.filtro.ret=!S.filtro.ret;$("kRetBtn").setAttribute("
 /* ---------- Supabase ---------- */
 const SUPA_URL=(window.CRM_CONFIG||{}).url, SUPA_KEY=(window.CRM_CONFIG||{}).key;
 if(!SUPA_KEY||SUPA_KEY.includes("COLE")){document.body.innerHTML="<p style='padding:24px;font-family:sans-serif'>Falta configurar a chave do Supabase no arquivo config.js.</p>";throw new Error("config")}
-const sb=supabase.createClient(SUPA_URL,SUPA_KEY);
+/* Sessão: "Lembrar-me por 30 dias" guarda no navegador; sem marcar, só até fechar a aba */
+const LEMBRAR_KEY="crm_lembrar_ate";
+/* chegou por link do e-mail (primeiro acesso / recuperar senha)? — lido antes do Supabase limpar a URL */
+const VIA_LINK=/type=(recovery|invite|magiclink|signup)/.test(location.hash+location.search);
+const lembrarAtivo=()=>{try{return +localStorage.getItem(LEMBRAR_KEY)>Date.now()}catch(_){return false}};
+const STORE={
+  getItem(k){try{return (lembrarAtivo()?localStorage:sessionStorage).getItem(k)}catch(_){return null}},
+  setItem(k,v){try{(lembrarAtivo()?localStorage:sessionStorage).setItem(k,v)}catch(_){}},
+  removeItem(k){try{localStorage.removeItem(k);sessionStorage.removeItem(k)}catch(_){}}
+};
+try{const ate=+localStorage.getItem(LEMBRAR_KEY);if(ate&&ate<Date.now()){localStorage.removeItem(LEMBRAR_KEY);Object.keys(localStorage).filter(k=>k.startsWith("sb-")).forEach(k=>localStorage.removeItem(k))}}catch(_){}
+const sb=supabase.createClient(SUPA_URL,SUPA_KEY,{auth:{storage:STORE,persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
 const MEMBROS={};
 const NULLABLE=new Set(["app_entregue_em","proximo_contato","reuniao_em","ultimo_contato"]);
 const snake=k=>k.replace(/[A-Z]/g,m=>"_"+m.toLowerCase());
@@ -538,9 +881,19 @@ let recT;function agendarRecarga(){clearTimeout(recT);recT=setTimeout(carregar,3
 
 async function entrar(session){
   const email=session.user.email;
-  const m=await sb.from("membros").select("email,nome");
-  if(m.error||!m.data.length){$("login").hidden=false;$("app").hidden=true;$("lMsg").textContent=`O e-mail ${email} ainda não tem acesso. Peça para a administradora liberar.`;await sb.auth.signOut();return}
+  const m=await sb.from("membros").select("*");
+  const eu=!m.error&&m.data.find(x=>String(x.email).toLowerCase()===email.toLowerCase());
+  const negar=txt=>{mostrarLogin("fLogin");$("app").hidden=true;msg("lMsg",txt,"err");sb.auth.signOut()};
+  if(m.error||!eu||eu.ativo===false){negar(eu&&eu.ativo===false?`O acesso de ${email} está desativado. Fale com a administradora.`:`O e-mail ${email} ainda não tem acesso. Peça para a administradora liberar.`);return}
   m.data.forEach(x=>MEMBROS[x.email.toLowerCase()]=x.nome||x.email.split("@")[0]);
+  // Perfil: se o banco ainda não tem a coluna "perfil", mantém o comportamento antigo (acesso total)
+  P.legado=!(eu&&"perfil" in eu);
+  P.perfil=P.legado?"admin":(PERFIS[eu.perfil]?eu.perfil:"vendedor");
+  P.vendedorNome=(eu&&eu.vendedor_nome)||"";
+  if(!P.legado){const cf=await sb.from("configuracoes").select("*");
+    if(!cf.error)cf.data.forEach(r=>{if(r.id==="permissoes")CFG.permissoes={...JSON.parse(JSON.stringify(PERM_PADRAO)),...r.valor};else CFG[r.id]=r.valor})}
+  aplicarConfig();
+  if(!pode("ver_todos")&&!P.vendedorNome){const b=$("banner");b.hidden=false;b.textContent="Seu usuário ainda não está vinculado a um vendedor, por isso nenhum cliente aparece. Peça para a administradora fazer o vínculo em Configurações › Usuários."}
   S.me=email;$("uEmail").textContent=MEMBROS[email.toLowerCase()]||email;
   $("login").hidden=true;$("app").hidden=false;
   await carregar();
@@ -548,21 +901,54 @@ async function entrar(session){
     .on("postgres_changes",{event:"*",schema:"public",table:"atividades"},agendarRecarga).subscribe();
 }
 
+function msg(id,t,cls){const el=$(id);el.textContent=t||"";el.className="lmsg"+(cls?" "+cls:"")}
+function mostrarLogin(form){$("login").hidden=false;["fLogin","fRecuperar","fNovaSenha"].forEach(f=>$(f).hidden=f!==form)}
+$("anoCopy").textContent=new Date().getFullYear();
+document.querySelectorAll("[data-eye]").forEach(b=>b.onclick=()=>{const i=$(b.dataset.eye);const v=i.type==="password";i.type=v?"text":"password";b.setAttribute("aria-label",v?"Ocultar senha":"Mostrar senha")});
 $("fLogin").addEventListener("submit",async e=>{
-  e.preventDefault();const email=$("lEmail").value.trim();if(!email)return;
-  $("lBtn").disabled=true;$("lMsg").textContent="Enviando…";
-  const{error}=await sb.auth.signInWithOtp({email,options:{emailRedirectTo:location.origin+location.pathname}});
+  e.preventDefault();const email=$("lEmail").value.trim();const senha=$("lSenha").value;if(!email||!senha)return;
+  try{if($("lLembrar").checked)localStorage.setItem(LEMBRAR_KEY,String(Date.now()+30*864e5));else localStorage.removeItem(LEMBRAR_KEY)}catch(_){}
+  $("lBtn").disabled=true;msg("lMsg","Entrando…");
+  const{data,error}=await sb.auth.signInWithPassword({email,password:senha});
   $("lBtn").disabled=false;
-  $("lMsg").textContent=error?"Não foi possível enviar agora. Espere alguns minutos e tente de novo.":`Pronto! Abra o e-mail enviado para ${email} e clique no link para entrar.`;
+  if(error){msg("lMsg",/invalid/i.test(error.message)?"E-mail ou senha incorretos. Se ainda não criou sua senha, clique em “Recupere agora”.":/confirm/i.test(error.message)?"Confirme seu e-mail pelo link que enviamos antes de entrar.":"Não foi possível entrar agora. Tente de novo em instantes.","err");return}
+  msg("lMsg","");$("lSenha").value="";
 });
-$("btnSair").onclick=async()=>{await sb.auth.signOut();location.reload()};
+$("lRecuperar").onclick=()=>{$("rEmail").value=$("lEmail").value;msg("rMsg","");mostrarLogin("fRecuperar");$("rEmail").focus()};
+$("rVoltar").onclick=()=>{mostrarLogin("fLogin")};
+$("fRecuperar").addEventListener("submit",async e=>{
+  e.preventDefault();const email=$("rEmail").value.trim();if(!email)return;
+  $("rBtn").disabled=true;msg("rMsg","Enviando…");
+  // cria o usuário de login se ainda não existir e manda o link; ao voltar, a pessoa define a senha
+  const{error}=await sb.auth.signInWithOtp({email,options:{shouldCreateUser:true,emailRedirectTo:location.origin+location.pathname}});
+  $("rBtn").disabled=false;
+  msg("rMsg",error?"Não foi possível enviar agora. Espere alguns minutos e tente de novo.":`Pronto! Abra o e-mail enviado para ${email} e clique no link para criar sua senha.`,error?"err":"ok");
+});
+let MODO_SENHA=false;
+function pedirNovaSenha(){MODO_SENHA=true;$("app").hidden=true;msg("nsMsg","");mostrarLogin("fNovaSenha");$("nsSenha").focus()}
+$("fNovaSenha").addEventListener("submit",async e=>{
+  e.preventDefault();const a=$("nsSenha").value,b=$("nsSenha2").value;
+  if(a.length<8){msg("nsMsg","A senha precisa ter pelo menos 8 caracteres.","err");return}
+  if(a!==b){msg("nsMsg","As senhas não são iguais.","err");return}
+  $("nsBtn").disabled=true;msg("nsMsg","Salvando…");
+  const{error}=await sb.auth.updateUser({password:a});
+  $("nsBtn").disabled=false;
+  if(error){msg("nsMsg",/same|different/i.test(error.message)?"Use uma senha diferente da anterior.":"Não foi possível salvar. Peça um novo link e tente de novo.","err");return}
+  MODO_SENHA=false;$("nsSenha").value=$("nsSenha2").value="";history.replaceState(null,"",location.pathname);
+  const{data:{session}}=await sb.auth.getSession();toast("Senha criada! Nas próximas vezes entre com e-mail e senha.");if(session)entrar(session);
+});
+$("btnSair").onclick=async()=>{try{localStorage.removeItem(LEMBRAR_KEY)}catch(_){}await sb.auth.signOut();location.reload()};
 
 /* ---------- boot ---------- */
 renderBoard();
 (async()=>{
   const{data:{session}}=await sb.auth.getSession();
-  if(session)entrar(session);else $("login").hidden=false;
-  sb.auth.onAuthStateChange((ev,s)=>{if(ev==="SIGNED_IN"&&s&&$("app").hidden)entrar(s)});
+  MODO_SENHA=VIA_LINK;
+  sb.auth.onAuthStateChange((ev,s)=>{
+    if(ev==="PASSWORD_RECOVERY"){pedirNovaSenha();return}
+    if(ev==="SIGNED_IN"&&s&&$("app").hidden&&!MODO_SENHA)entrar(s)});
+  if(VIA_LINK){if(session)pedirNovaSenha();else{MODO_SENHA=false;mostrarLogin("fLogin");msg("lMsg","Esse link expirou. Peça um novo em “Recupere agora”.","err")}return}
+  if(session)entrar(session);else mostrarLogin("fLogin");
 })();
 </script>
 
